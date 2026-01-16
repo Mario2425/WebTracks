@@ -116,6 +116,8 @@ http://localhost:3000
 - Export to various audio formats
 - Cloud storage for projects
 - Collaboration features
+- Rate limiting for API endpoints in production
+- User authentication and authorization
 
 ## Contributing
 

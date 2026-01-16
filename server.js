@@ -46,6 +46,7 @@ const upload = multer({
 
 // Routes
 app.get('/', (req, res) => {
+  // TODO: Add rate limiting for production to prevent abuse
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
