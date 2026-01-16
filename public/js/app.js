@@ -188,9 +188,14 @@ saveProjectBtn.addEventListener('click', async () => {
             body: JSON.stringify({ projectData })
         });
         const result = await response.json();
-        alert('Project saved successfully!');
+        
+        if (result.success) {
+            alert('Project saved successfully!');
+        } else {
+            alert(`Error saving project: ${result.error || 'Unknown error'}`);
+        }
     } catch (error) {
-        alert('Error saving project');
+        alert(`Error saving project: ${error.message}`);
         console.error(error);
     }
 });
