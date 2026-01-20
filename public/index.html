@@ -1,8 +1,190 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Forge AI Music</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ForgeAI-Music - Online Audio & Music Production</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <h1>Welcome to Forge AI Music</h1>
+    <header>
+        <div class="header-content">
+            <h1>🎵 ForgeAI-Music</h1>
+            <p class="tagline">Full Online Digital Audio Workstation with AI Power</p>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <button class="nav-btn active" data-section="daw">DAW</button>
+        <button class="nav-btn" data-section="stem-split">AI Stem Splitting</button>
+        <button class="nav-btn" data-section="ai-generate">AI Generation</button>
+    </nav>
+
+    <main class="container">
+        <!-- Digital Audio Workstation Section -->
+        <section id="daw" class="section active">
+            <h2>Digital Audio Workstation</h2>
+            
+            <div class="daw-controls">
+                <div class="transport-controls">
+                    <button id="play-btn" class="control-btn">▶️ Play</button>
+                    <button id="pause-btn" class="control-btn">⏸️ Pause</button>
+                    <button id="stop-btn" class="control-btn">⏹️ Stop</button>
+                    <button id="record-btn" class="control-btn">⏺️ Record</button>
+                </div>
+                
+                <div class="master-controls">
+                    <div class="control-group">
+                        <label for="master-volume">Master Volume</label>
+                        <input type="range" id="master-volume" min="0" max="100" value="80">
+                        <span id="volume-display">80%</span>
+                    </div>
+                    <div class="control-group">
+                        <label for="tempo">Tempo (BPM)</label>
+                        <input type="number" id="tempo" min="40" max="240" value="120">
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-container">
+                <div class="timeline-header">
+                    <span class="timeline-label">Timeline</span>
+                    <span class="timeline-time">0:00 / 0:00</span>
+                </div>
+                <canvas id="timeline-canvas" width="800" height="60"></canvas>
+            </div>
+
+            <div class="tracks-container">
+                <h3>Tracks</h3>
+                <div id="tracks-list">
+                    <div class="track" data-track="1">
+                        <div class="track-controls">
+                            <input type="text" class="track-name" value="Track 1" placeholder="Track name">
+                            <button class="btn-mute">M</button>
+                            <button class="btn-solo">S</button>
+                            <input type="range" class="track-volume" min="0" max="100" value="80">
+                        </div>
+                        <div class="track-waveform">
+                            <canvas width="700" height="80"></canvas>
+                        </div>
+                    </div>
+                    <div class="track" data-track="2">
+                        <div class="track-controls">
+                            <input type="text" class="track-name" value="Track 2" placeholder="Track name">
+                            <button class="btn-mute">M</button>
+                            <button class="btn-solo">S</button>
+                            <input type="range" class="track-volume" min="0" max="100" value="80">
+                        </div>
+                        <div class="track-waveform">
+                            <canvas width="700" height="80"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <button id="add-track-btn" class="btn-primary">+ Add Track</button>
+            </div>
+
+            <div class="project-controls">
+                <button id="save-project-btn" class="btn-primary">💾 Save Project</button>
+                <button id="export-btn" class="btn-primary">📥 Export</button>
+            </div>
+        </section>
+
+        <!-- AI Stem Splitting Section -->
+        <section id="stem-split" class="section">
+            <h2>AI Stem Splitting</h2>
+            <p class="section-description">Separate your audio into individual stems (vocals, drums, bass, and other instruments)</p>
+            
+            <div class="upload-area">
+                <div class="drop-zone" id="stem-drop-zone">
+                    <p>🎼 Drag & drop your audio file here</p>
+                    <p class="small-text">or</p>
+                    <label for="stem-file-input" class="btn-primary">Choose File</label>
+                    <input type="file" id="stem-file-input" accept="audio/*" style="display: none;">
+                </div>
+            </div>
+
+            <div id="stem-status" class="status-message"></div>
+
+            <div id="stem-results" class="results-container">
+                <!-- Stem results will be displayed here -->
+            </div>
+        </section>
+
+        <!-- AI Generation Section -->
+        <section id="ai-generate" class="section">
+            <h2>AI Sound FX & Music Generation</h2>
+            
+            <div class="ai-tabs">
+                <button class="ai-tab-btn active" data-tab="sfx">Sound Effects</button>
+                <button class="ai-tab-btn" data-tab="music">Music</button>
+            </div>
+
+            <!-- Sound FX Tab -->
+            <div id="sfx-tab" class="ai-tab-content active">
+                <h3>Generate Sound Effects</h3>
+                <form id="sfx-form" class="ai-form">
+                    <div class="form-group">
+                        <label for="sfx-prompt">Describe the sound effect:</label>
+                        <input type="text" id="sfx-prompt" placeholder="e.g., thunderstorm with heavy rain" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="sfx-duration">Duration (seconds):</label>
+                        <input type="number" id="sfx-duration" min="1" max="30" value="5">
+                    </div>
+                    <button type="submit" class="btn-primary">✨ Generate Sound FX</button>
+                </form>
+                <div id="sfx-status" class="status-message"></div>
+            </div>
+
+            <!-- Music Tab -->
+            <div id="music-tab" class="ai-tab-content">
+                <h3>Generate Music</h3>
+                <form id="music-form" class="ai-form">
+                    <div class="form-group">
+                        <label for="music-genre">Genre:</label>
+                        <select id="music-genre" required>
+                            <option value="">Select genre</option>
+                            <option value="electronic">Electronic</option>
+                            <option value="ambient">Ambient</option>
+                            <option value="rock">Rock</option>
+                            <option value="jazz">Jazz</option>
+                            <option value="classical">Classical</option>
+                            <option value="hip-hop">Hip Hop</option>
+                            <option value="pop">Pop</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="music-mood">Mood:</label>
+                        <select id="music-mood" required>
+                            <option value="">Select mood</option>
+                            <option value="happy">Happy</option>
+                            <option value="sad">Sad</option>
+                            <option value="energetic">Energetic</option>
+                            <option value="calm">Calm</option>
+                            <option value="dark">Dark</option>
+                            <option value="uplifting">Uplifting</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="music-tempo">Tempo (BPM):</label>
+                        <input type="number" id="music-tempo" min="60" max="180" value="120">
+                    </div>
+                    <div class="form-group">
+                        <label for="music-duration">Duration (seconds):</label>
+                        <input type="number" id="music-duration" min="10" max="300" value="60">
+                    </div>
+                    <button type="submit" class="btn-primary">🎹 Generate Music</button>
+                </form>
+                <div id="music-status" class="status-message"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 ForgeAI-Music. All rights reserved.</p>
+        <p>Full Online Digital Audio Workstation with AI Capabilities</p>
+    </footer>
+
+    <script src="/js/app.js"></script>
 </body>
 </html>
