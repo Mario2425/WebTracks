@@ -26,11 +26,13 @@ A completely online audio and music production solution with AI capabilities and
 ### 3. ✨ AI Sound FX and Music Generation
 
 #### Sound Effects Generator
+- **Based On SunoAI**
 - **Prompt-based Generation**: Describe the sound effect you want
 - **Duration Control**: Set the length of your sound effect (1-30 seconds)
 - **Custom Parameters**: Fine-tune your sound effects
 
 #### Music Generator
+- **Based On SunoAI**
 - **Genre Selection**: Choose from multiple genres (Electronic, Ambient, Rock, Jazz, Classical, Hip Hop, Pop)
 - **Mood Control**: Set the mood (Happy, Sad, Energetic, Calm, Dark, Uplifting)
 - **Tempo Adjustment**: Control the BPM (60-180)
