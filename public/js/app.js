@@ -13,7 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Add active class to clicked button and target section
             button.classList.add('active');
-            document.getElementById(targetSection).classList.add('active');
+            const targetElement = document.getElementById(targetSection);
+            if (targetElement) {
+                targetElement.classList.add('active');
+            }
         });
     });
     
@@ -31,7 +34,10 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Add active class to clicked button and target content
             button.classList.add('active');
-            document.getElementById(targetTab + '-tab').classList.add('active');
+            const targetElement = document.getElementById(targetTab + '-tab');
+            if (targetElement) {
+                targetElement.classList.add('active');
+            }
         });
     });
 });
