@@ -12,6 +12,7 @@ A completely online audio and music production solution with AI capabilities and
 - **Master Controls**: Master volume and tempo (BPM) adjustment
 - **Waveform Visualization**: Visual representation of audio on each track
 - **Project Management**: Save and export your projects
+- **Transposing Audio**: Transpose your audio to any pitch and key you want
 
 ### 2. 🎼 AI Stem Splitting
 - **Audio Separation**: Upload any audio file and separate it into individual stems
