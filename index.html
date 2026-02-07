@@ -3,55 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ForgeAI Music</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(120deg, #f0f0f0, #eaeaea);
-            margin: 0;
-        }
-        nav {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 1rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: space-around;
-        }
-        nav a {
-            color: #333;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: background 0.3s, transform 0.3s;
-        }
-        nav a:hover {
-            background: rgba(255, 255, 255, 0.5);
-            transform: translateY(-2px);
-        }
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 90vh;
-            text-align: center;
-        }
-        h1 {
-            color: #555;
-            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
-        }
-    </style>
+    <title>ForgeAI Music - Audio Production Suite</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <nav>
-        <a href="#online-daw">Online DAW</a>
-        <a href="#ai-stem-split">AI Stem Split</a>
-        <a href="#ai-sfx-music">AI SFX and Music Generation</a>
-        <a href="#about-me">About Me</a>
-        <a href="#learn-more">Learn More</a>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-music logo-icon"></i>
+                <span class="logo-text">ForgeAI Music</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#online-daw" class="nav-link">
+                        <i class="fas fa-sliders-h nav-icon"></i>
+                        <span>Online DAW</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#ai-stem-split" class="nav-link">
+                        <i class="fas fa-wave-square nav-icon"></i>
+                        <span>AI Stem Split</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#ai-sfx-music" class="nav-link">
+                        <i class="fas fa-magic nav-icon"></i>
+                        <span>AI SFX and Music Generation</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about-me" class="nav-link">
+                        <i class="fas fa-user nav-icon"></i>
+                        <span>About Me</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#learn-more" class="nav-link">
+                        <i class="fas fa-book nav-icon"></i>
+                        <span>Learn More</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
     </nav>
-    <div class="container">
-        <h1>Welcome to ForgeAI Music</h1>
-    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="gradient-text">ForgeAI Music</span>
+            </h1>
+            <p class="hero-subtitle">The Future of Audio Production</p>
+            <p class="hero-description">
+                A completely online audio and music production solution with AI capabilities and integration
+            </p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary">
+                    <i class="fas fa-play"></i>
+                    Get Started
+                </button>
+                <button class="btn btn-secondary">
+                    <i class="fas fa-video"></i>
+                    Watch Demo
+                </button>
+            </div>
+        </div>
+        
+        <!-- Feature Cards -->
+        <div class="feature-cards">
+            <div class="feature-card">
+                <div class="card-icon">
+                    <i class="fas fa-music"></i>
+                </div>
+                <h3>Online DAW</h3>
+                <p>Professional multi-track audio editor in your browser</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="card-icon">
+                    <i class="fas fa-wave-square"></i>
+                </div>
+                <h3>AI Stem Splitting</h3>
+                <p>Separate vocals, drums, bass, and instruments instantly</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="card-icon">
+                    <i class="fas fa-wand-magic-sparkles"></i>
+                </div>
+                <h3>AI Generation</h3>
+                <p>Create music and sound effects with AI</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
 </body>
 </html>
