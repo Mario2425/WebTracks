@@ -174,6 +174,64 @@ body::before {
     filter: drop-shadow(0 0 12px rgba(99, 102, 241, 0.9));
 }
 
+/* Login/Sign Up Button */
+.auth-button {
+    margin-left: 1rem;
+}
+
+.btn-login {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-login::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-dark), var(--secondary-color));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.btn-login:hover::before {
+    opacity: 1;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
+}
+
+.btn-login i,
+.btn-login span {
+    position: relative;
+    z-index: 1;
+}
+
+.btn-login i {
+    font-size: 1.2rem;
+}
+
+/* Mobile Login Button (hidden on desktop) */
+.mobile-login {
+    display: none;
+}
+
 /* Hamburger Menu */
 .hamburger {
     display: none;
@@ -470,6 +528,24 @@ body::before {
 
     .nav-menu.active {
         left: 0;
+    }
+
+    .auth-button {
+        display: none;
+    }
+
+    .mobile-login {
+        display: block;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--glass-border);
+    }
+
+    .mobile-login .nav-link {
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        font-weight: 600;
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
     }
 
     .hamburger {
