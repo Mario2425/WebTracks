@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Generation - ForgeAI Music</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="ai-generation.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html" style="display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: inherit;">
+                    <i class="fas fa-music logo-icon"></i>
+                    <span class="logo-text">ForgeAI Music</span>
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html#online-daw" class="nav-link">
+                        <i class="fas fa-sliders-h nav-icon"></i>
+                        <span>Online DAW</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#ai-stem-split" class="nav-link">
+                        <i class="fas fa-wave-square nav-icon"></i>
+                        <span>AI Stem Split</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="ai-generation.html" class="nav-link active">
+                        <i class="fas fa-magic nav-icon"></i>
+                        <span>AI SFX and Music Generation</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#about-me" class="nav-link">
+                        <i class="fas fa-user nav-icon"></i>
+                        <span>About Me</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html#learn-more" class="nav-link">
+                        <i class="fas fa-book nav-icon"></i>
+                        <span>Learn More</span>
+                    </a>
+                </li>
+                <li class="nav-item mobile-login">
+                    <a href="#login" class="nav-link">
+                        <i class="fas fa-user-circle nav-icon"></i>
+                        <span>Login / Sign Up</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="auth-button">
+                <a href="#login" class="btn-login">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Login / Sign Up</span>
+                </a>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <div class="ai-generation-container">
+        <!-- Recent Projects Sidebar -->
+        <aside class="recent-projects-sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-folder-open"></i> Recent Projects</h2>
+                <button class="btn-new-project" title="New Project">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
+            <div class="projects-list">
+                <div class="project-item active">
+                    <div class="project-icon">
+                        <i class="fas fa-music"></i>
+                    </div>
+                    <div class="project-info">
+                        <h4>Epic Soundtrack</h4>
+                        <span class="project-date">2 hours ago</span>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-icon">
+                        <i class="fas fa-drum"></i>
+                    </div>
+                    <div class="project-info">
+                        <h4>Drum Loop Pack</h4>
+                        <span class="project-date">Yesterday</span>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-icon">
+                        <i class="fas fa-guitar"></i>
+                    </div>
+                    <div class="project-info">
+                        <h4>Ambient Background</h4>
+                        <span class="project-date">3 days ago</span>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-icon">
+                        <i class="fas fa-volume-high"></i>
+                    </div>
+                    <div class="project-info">
+                        <h4>SFX Collection</h4>
+                        <span class="project-date">1 week ago</span>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <div class="project-icon">
+                        <i class="fas fa-microphone"></i>
+                    </div>
+                    <div class="project-info">
+                        <h4>Vocal Samples</h4>
+                        <span class="project-date">2 weeks ago</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Chat Area -->
+        <main class="chat-area">
+            <div class="chat-header">
+                <h1><i class="fas fa-wand-magic-sparkles"></i> AI Music & SFX Generator</h1>
+                <p>Describe what you want to create, and our AI will generate it for you</p>
+            </div>
+
+            <div class="chat-messages" id="chatMessages">
+                <!-- Welcome Message -->
+                <div class="message assistant-message">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <p>👋 Welcome to ForgeAI Music Generation! I can help you create:</p>
+                        <ul>
+                            <li>🎵 Original music in any genre</li>
+                            <li>🔊 Custom sound effects</li>
+                            <li>🎹 Instrument loops and samples</li>
+                            <li>🎧 Ambient soundscapes</li>
+                        </ul>
+                        <p>Just describe what you want, and I'll generate it for you!</p>
+                    </div>
+                </div>
+
+                <!-- Example Messages (can be removed after first user interaction) -->
+                <div class="message user-message">
+                    <div class="message-content">
+                        <p>Create an epic orchestral soundtrack with powerful drums</p>
+                    </div>
+                    <div class="message-avatar user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+
+                <div class="message assistant-message">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <p>🎼 Generating your epic orchestral soundtrack...</p>
+                        <div class="generation-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <span class="progress-text">Generating... 75%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Input Area -->
+            <div class="chat-input-container">
+                <div class="chat-input-wrapper">
+                    <button class="btn-upload" title="Upload reference audio">
+                        <i class="fas fa-paperclip"></i>
+                    </button>
+                    <textarea 
+                        id="chatInput" 
+                        placeholder="Describe the music or sound effect you want to create..."
+                        rows="1"
+                    ></textarea>
+                    <button class="btn-send" id="btnSend">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                <div class="input-suggestions">
+                    <button class="suggestion-chip">🎸 Rock Guitar Loop</button>
+                    <button class="suggestion-chip">🌊 Ocean Waves SFX</button>
+                    <button class="suggestion-chip">🎹 Piano Ballad</button>
+                    <button class="suggestion-chip">⚡ Sci-Fi Laser Sound</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Hidden File Input -->
+    <input type="file" id="fileInput" accept="audio/*" style="display: none;">
+
+    <script src="script.js"></script>
+    <script src="ai-generation.js"></script>
+</body>
+</html>
