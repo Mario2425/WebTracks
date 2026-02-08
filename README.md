@@ -14,7 +14,7 @@ A completely online audio and music production solution with AI capabilities. Fr
 - **Master Controls**: Master volume and tempo (BPM) adjustment
 - **Waveform Visualization**: Visual representation of audio on each track
 - **Performance Monitor**: Monitor your device's vitals real-time (CPU, Memory, I/O)
-- **Project Settings**: Easily manage and tweak your project's name, the author, performance options, connected audio devices, latency, buffer size and more
+- **Project Settings**: Easily manage and tweak your project's name, author, performance options, connected audio devices, latency, buffer size and more
 - **Project Management**: Save and export your projects
 - **Transposing Audio**: Transpose your audio to any pitch and key you want
 
