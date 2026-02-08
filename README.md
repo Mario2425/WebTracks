@@ -21,7 +21,7 @@ A completely online audio and music production solution with AI capabilities. Fr
   - Drums
   - Bass
   - Other instruments
-- **Drag & Drop Upload**: Easy file upload interface, instantly adds the file as a track to your project
+- **Drag & Drop Upload**: Easy file upload interface, instantly adds the file as a track into your project
 - **Download Stems**: Download individual stems for further processing
 
 ### 3. 🌍 Sharing Your Songs With The Planet
@@ -29,7 +29,7 @@ A completely online audio and music production solution with AI capabilities. Fr
 #### A Worldwide Avaible Shared Songs Page 
 - **Go to --> Top bar --> Export --> Share with the planet 🌍**
 - **Search bar**: Describe the song you want
-- **View likes, view count, view saves and view the user's other shared song projects**: Set the length of your sound effect (1-30 seconds)
+- **View likes, view the total view count, view saves and view the user's other shared song projects**
 - **Save**: Liked it? Save instantly to your 'Likes' library or download directly to your device
 
 ## Installation
