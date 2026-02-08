@@ -30,7 +30,7 @@ A completely online audio and music production solution with AI capabilities. Fr
 
 ### 3. 🌍 Sharing Your Songs With The Planet
 
-#### A Worldwide Avaible Shared Songs Page 
+#### Worldwide Community Song Page
 - **Go to --> Top bar --> Export --> Share with the planet 🌍**
 - **Search bar**: Describe the song you want
 - **View likes, view the total view count, view saves and view the user's other shared song projects**
