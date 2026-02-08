@@ -1,5 +1,5 @@
-# ForgeAI-Music 🎵
-A completely online audio and music production solution with AI capabilities and integration. Free* to use
+# WebTracks 🎵
+A completely online audio and music production solution with AI capabilities. Free* to use
 
 
 ## Features
@@ -15,29 +15,22 @@ A completely online audio and music production solution with AI capabilities and
 - **Transposing Audio**: Transpose your audio to any pitch and key you want
 
 ### 2. 🎼 AI Stem Splitting
-- **Audio Separation**: Upload any audio file and separate it into individual stems
+- **Audio Separation**: Separate your audio file to individual stems, just simply right click your track and stem split your track
 - **Four Stem Types**: 
   - Vocals
   - Drums
   - Bass
   - Other instruments
-- **Drag & Drop Upload**: Easy file upload interface
+- **Drag & Drop Upload**: Easy file upload interface, instantly adds the file as a track to your project
 - **Download Stems**: Download individual stems for further processing
 
-### 3. ✨ AI Sound FX and Music Generation
+### 3. Sharing Your Songs With The Planet
 
-#### Sound Effects Generator
-- **Based On SunoAI**
-- **Prompt-based Generation**: Describe the sound effect you want
-- **Duration Control**: Set the length of your sound effect (1-30 seconds)
-- **Custom Parameters**: Fine-tune your sound effects
-
-#### Music Generator
-- **Based On SunoAI**
-- **Genre Selection**: Choose from multiple genres (Electronic, Ambient, Rock, Jazz, Classical, Hip Hop, Pop)
-- **Mood Control**: Set the mood (Happy, Sad, Energetic, Calm, Dark, Uplifting)
-- **Tempo Adjustment**: Control the BPM (60-180)
-- **Duration Control**: Generate music from 10 seconds to 5 minutes
+#### A Worldwide Avaible Shared Songs Page 
+- **Go to --> Top bar --> Export --> Share with the planet 🌍**
+- **Search bar**: Describe the song you want
+- **View likes, view count, view saves and view the user's other shared song projects**: Set the length of your sound effect (1-30 seconds)
+- **Save**: Liked it? Save instantly to your 'Likes' library or download directly to your device
 
 ## Installation
 
@@ -75,25 +68,13 @@ http://localhost:3000
 2. Add new tracks with the "+ Add Track" button
 3. Adjust individual track volumes and use mute/solo controls
 4. Set the master volume and tempo
-5. Save your project or export when finished
+5. Save your project, share it or export when finished
 
 ### AI Stem Splitting
-1. Navigate to the "AI Stem Splitting" tab
-2. Drag and drop an audio file or click to browse
+1. Drag and drop your audio file to your project
+2. Right click your track and hit 'Stem split'
 3. Wait for processing
 4. Download individual stems (vocals, drums, bass, other)
-
-### AI Generation
-1. Navigate to the "AI Generation" tab
-2. Choose between "Sound Effects" or "Music" tab
-3. For Sound Effects:
-   - Enter a description of the sound you want
-   - Set the duration
-   - Click "Generate Sound FX"
-4. For Music:
-   - Select genre and mood
-   - Set tempo and duration
-   - Click "Generate Music"
 
 ## Technology Stack
 
@@ -111,10 +92,7 @@ http://localhost:3000
 
 ## Future Enhancements
 
-- Integration with actual AI models for stem splitting (Demucs, Spleeter)
-- Integration with AI music generation models (MusicGen, AudioCraft)
-- Real-time audio recording and processing
-- Audio effects and plugins
+- Better integration with AI music generation models (MusicGen, AudioCraft)
 - MIDI support
 - Export to various audio formats
 - Cloud storage for projects
