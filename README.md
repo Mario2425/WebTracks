@@ -24,7 +24,7 @@ A completely online audio and music production solution with AI capabilities. Fr
 - **Drag & Drop Upload**: Easy file upload interface, instantly adds the file as a track to your project
 - **Download Stems**: Download individual stems for further processing
 
-### 3. Sharing Your Songs With The Planet
+### 3. 🌍 Sharing Your Songs With The Planet
 
 #### A Worldwide Avaible Shared Songs Page 
 - **Go to --> Top bar --> Export --> Share with the planet 🌍**
