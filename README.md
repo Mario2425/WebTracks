@@ -7,10 +7,14 @@ A completely online audio and music production solution with AI capabilities. Fr
 ### 1. 🎚️ Full Online Digital Audio Workstation (DAW)
 - **Multi-track Audio Editor**: Create and manage multiple audio tracks
 - **Transport Controls**: Play, pause, stop, and record functionality
+- **Real-Time Recording**: Record your performance lively
 - **Timeline Visualization**: Visual timeline with playhead for precise editing
 - **Track Controls**: Individual track volume, mute, and solo controls
+- **Plugins**: Upload and import your favorite VSTs or browse built in ones from the selection library
 - **Master Controls**: Master volume and tempo (BPM) adjustment
 - **Waveform Visualization**: Visual representation of audio on each track
+- **Performance Monitor**: Monitor your device's vitals real-time (CPU, Memory, I/O)
+- **Project Settings**: Easily manage and tweak your project's name, the author, performance options, connected audio devices, latency, buffer size and more
 - **Project Management**: Save and export your projects
 - **Transposing Audio**: Transpose your audio to any pitch and key you want
 
