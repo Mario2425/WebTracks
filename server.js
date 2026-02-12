@@ -468,7 +468,7 @@ app.use((req, res) => {
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`🎵 ForgeAI Music Server is running on http://localhost:${PORT}`);
+    console.log(`🎵 WebTracks Server is running on http://localhost:${PORT}`);
     console.log(`📁 Uploads directory: ${uploadsDir}`);
     console.log(`⚡ Environment: ${process.env.NODE_ENV || 'development'}`);
 });

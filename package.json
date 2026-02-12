@@ -1,5 +1,5 @@
 {
-  "name": "forgeai-music",
+  "name": "webtracks",
   "version": "1.0.0",
   "description": "A completely online audio and music production solution with AI capabilities",
   "main": "server.js",

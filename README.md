@@ -1,4 +1,4 @@
-# ForgeAI-Music 🎵
+# WebTracks 🎵
 A completely online audio and music production solution with AI capabilities and integration. Free* to use
 
 
@@ -49,8 +49,8 @@ A completely online audio and music production solution with AI capabilities and
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/Mario2425/ForgeAI-Music.git
-cd ForgeAI-Music
+git clone https://github.com/Mario2425/WebTracks.git
+cd WebTracks
 ```
 
 2. Install dependencies:

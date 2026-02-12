@@ -67,4 +67,4 @@ window.addEventListener('scroll', () => {
     lastScroll = currentScroll;
 });
 
-console.log('🎵 ForgeAI Music - Ready!');
+console.log('🎵 WebTracks - Ready!');

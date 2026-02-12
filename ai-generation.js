@@ -332,4 +332,4 @@ document.querySelector('.btn-new-project').addEventListener('click', function() 
     document.querySelectorAll('.project-item').forEach(i => i.classList.remove('active'));
 });
 
-console.log('🎵 AI Generation Page - Ready!');
+console.log('🎵 WebTracks AI Generation Page - Ready!');
