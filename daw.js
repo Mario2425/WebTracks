@@ -5,6 +5,7 @@
 class DAW {
     constructor() {
         this.audioContext = null;
+        this.masterGainNode = null;
         this.tracks = [];
         this.isPlaying = false;
         this.isRecording = false;
@@ -15,6 +16,7 @@ class DAW {
         this.projectName = 'Untitled Project';
         this.sampleRate = 48000;
         this.bufferSize = 512;
+        this.performanceMonitorInterval = null;
         
         this.init();
     }
@@ -35,6 +37,12 @@ class DAW {
             window.AudioContext = window.AudioContext || window.webkitAudioContext;
             this.audioContext = new AudioContext();
             this.sampleRate = this.audioContext.sampleRate;
+            
+            // Create master gain node for volume control
+            this.masterGainNode = this.audioContext.createGain();
+            this.masterGainNode.gain.value = 0.8; // 80% default volume
+            this.masterGainNode.connect(this.audioContext.destination);
+            
             console.log('Audio Context initialized:', this.audioContext.state);
             console.log('Sample Rate:', this.sampleRate);
         } catch (e) {
@@ -76,8 +84,8 @@ class DAW {
         document.getElementById('masterVolume').addEventListener('input', (e) => {
             const value = e.target.value;
             document.getElementById('masterVolumeValue').textContent = value + '%';
-            if (this.audioContext) {
-                this.audioContext.destination.volume = value / 100;
+            if (this.masterGainNode) {
+                this.masterGainNode.gain.value = value / 100;
             }
         });
         
@@ -90,7 +98,7 @@ class DAW {
     }
 
     setupPerformanceMonitor() {
-        setInterval(() => {
+        this.performanceMonitorInterval = setInterval(() => {
             // Simulate CPU usage
             const cpuUsage = Math.random() * 30 + 10;
             document.getElementById('cpuBar').style.width = cpuUsage + '%';
@@ -116,6 +124,25 @@ class DAW {
                 document.getElementById('masterMeterR').style.height = '0%';
             }
         }, 100);
+    }
+
+    cleanup() {
+        // Clean up performance monitor interval
+        if (this.performanceMonitorInterval) {
+            clearInterval(this.performanceMonitorInterval);
+            this.performanceMonitorInterval = null;
+        }
+        
+        // Cancel animation frame if playing
+        if (this.animationFrameId) {
+            cancelAnimationFrame(this.animationFrameId);
+            this.animationFrameId = null;
+        }
+        
+        // Close audio context
+        if (this.audioContext) {
+            this.audioContext.close();
+        }
     }
 
     // Transport Controls
@@ -480,8 +507,7 @@ class DAW {
             bpm: this.bpm,
             sampleRate: this.sampleRate,
             bufferSize: this.bufferSize,
-            tracks: this.tracks,
-            timestamp: new Date().toISOString()
+            tracks: this.tracks
         };
         
         try {
@@ -563,6 +589,13 @@ let daw;
 document.addEventListener('DOMContentLoaded', () => {
     daw = new DAW();
     console.log('🎵 WebTracks DAW - Ready!');
+});
+
+// Cleanup on page unload
+window.addEventListener('beforeunload', () => {
+    if (daw) {
+        daw.cleanup();
+    }
 });
 
 // Mobile menu toggle (from main script)
