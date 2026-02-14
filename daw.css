@@ -1,0 +1,840 @@
+/* ============================================
+   DAW SPECIFIC STYLES
+   ============================================ */
+
+.daw-body {
+    overflow: hidden;
+    height: 100vh;
+}
+
+.daw-container {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--dark-bg);
+    z-index: 1;
+}
+
+/* ============================================
+   TOOLBAR
+   ============================================ */
+
+.daw-toolbar {
+    display: flex;
+    gap: 2rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-sm);
+}
+
+.toolbar-section {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.toolbar-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--dark-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.toolbar-btn:hover {
+    background: var(--dark-hover);
+    color: var(--text-primary);
+    border-color: var(--primary-light);
+    transform: translateY(-1px);
+}
+
+.toolbar-btn i {
+    font-size: 1rem;
+}
+
+/* ============================================
+   MAIN DAW LAYOUT
+   ============================================ */
+
+.daw-main {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* ============================================
+   LEFT SIDEBAR - PLUGINS
+   ============================================ */
+
+.daw-sidebar {
+    width: 250px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+.sidebar-header {
+    margin-bottom: 1rem;
+}
+
+.sidebar-header h3 {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.plugin-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.plugin-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: var(--dark-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    cursor: grab;
+    transition: all 0.2s ease;
+}
+
+.plugin-item:hover {
+    background: var(--dark-hover);
+    border-color: var(--primary-light);
+    color: var(--text-primary);
+}
+
+.plugin-item:active {
+    cursor: grabbing;
+}
+
+.plugin-item i {
+    font-size: 1.2rem;
+    color: var(--primary-light);
+}
+
+/* Performance Monitor */
+.performance-monitor {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.perf-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.perf-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.perf-bar {
+    height: 8px;
+    background: var(--dark-card);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.perf-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-color), var(--primary-color));
+    border-radius: 4px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+.perf-value {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-align: right;
+}
+
+/* ============================================
+   CENTER WORKSPACE
+   ============================================ */
+
+.daw-workspace {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Transport Controls */
+.transport-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    gap: 1rem;
+}
+
+.transport-left,
+.transport-center,
+.transport-right {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.transport-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--dark-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.transport-btn:hover {
+    background: var(--dark-hover);
+    color: var(--text-primary);
+    border-color: var(--primary-light);
+    transform: scale(1.05);
+}
+
+.transport-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.transport-play {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.transport-play:hover {
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.transport-record.active {
+    background: #ef4444;
+    color: white;
+    border-color: #ef4444;
+    animation: recordPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes recordPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+    50% { box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+}
+
+.transport-btn span {
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* Time Display */
+.time-display {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+    background: var(--dark-card);
+    border-radius: 8px;
+    min-width: 200px;
+    justify-content: center;
+}
+
+.time-separator {
+    color: var(--text-muted);
+}
+
+/* BPM Control */
+.bpm-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--dark-card);
+    border-radius: 8px;
+}
+
+.bpm-control label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.bpm-control input {
+    width: 60px;
+    padding: 0.25rem 0.5rem;
+    background: var(--dark-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* Timeline Ruler */
+.timeline-ruler {
+    height: 30px;
+    background: var(--dark-card);
+    border-bottom: 1px solid var(--glass-border);
+    position: relative;
+    overflow: hidden;
+}
+
+.timeline-ruler canvas {
+    width: 100%;
+    height: 100%;
+}
+
+/* Tracks Container */
+.tracks-container {
+    flex: 1;
+    display: flex;
+    overflow: auto;
+    position: relative;
+}
+
+.track-headers {
+    width: 200px;
+    background: var(--dark-card);
+    border-right: 1px solid var(--glass-border);
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+.track-header {
+    height: 120px;
+    padding: 1rem;
+    border-bottom: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.track-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0.25rem;
+    border-radius: 4px;
+}
+
+.track-name:focus {
+    background: var(--dark-bg);
+}
+
+.track-controls {
+    display: flex;
+    gap: 0.25rem;
+    margin-top: auto;
+}
+
+.track-btn {
+    flex: 1;
+    padding: 0.4rem;
+    background: var(--dark-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 4px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+}
+
+.track-btn:hover {
+    background: var(--dark-hover);
+    color: var(--text-primary);
+}
+
+.track-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.track-volume {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.track-volume input[type="range"] {
+    flex: 1;
+}
+
+.track-volume-value {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    min-width: 35px;
+    text-align: right;
+}
+
+/* Track Content */
+.track-content {
+    flex: 1;
+    overflow: auto;
+    position: relative;
+}
+
+.track-lane {
+    height: 120px;
+    border-bottom: 1px solid var(--glass-border);
+    position: relative;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--dark-bg) 0px,
+        var(--dark-bg) 99px,
+        var(--glass-border) 99px,
+        var(--glass-border) 100px
+    );
+}
+
+.track-clip {
+    position: absolute;
+    height: 80%;
+    top: 10%;
+    background: var(--glass-bg);
+    border: 2px solid var(--primary-light);
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: move;
+    transition: box-shadow 0.2s ease;
+}
+
+.track-clip:hover {
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.track-clip canvas {
+    width: 100%;
+    height: 100%;
+}
+
+/* Playhead */
+.playhead {
+    position: absolute;
+    top: 0;
+    left: 200px;
+    width: 2px;
+    height: 100%;
+    background: var(--secondary-color);
+    pointer-events: none;
+    z-index: 100;
+    box-shadow: 0 0 10px rgba(236, 72, 153, 0.6);
+}
+
+.playhead::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -6px;
+    width: 0;
+    height: 0;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 10px solid var(--secondary-color);
+}
+
+/* ============================================
+   RIGHT SIDEBAR - MASTER CONTROLS
+   ============================================ */
+
+.daw-master-panel {
+    width: 220px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-left: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+.master-header {
+    margin-bottom: 1rem;
+}
+
+.master-header h3 {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Master Volume Control */
+.master-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--dark-card);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.master-control label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.volume-meter {
+    display: flex;
+    gap: 0.5rem;
+    height: 150px;
+    margin: 0.5rem 0;
+}
+
+.meter-bar {
+    width: 12px;
+    background: var(--dark-bg);
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+}
+
+.meter-level {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(180deg, #ef4444 0%, #f59e0b 50%, #10b981 100%);
+    transition: height 0.1s ease;
+    height: 0%;
+}
+
+.vertical-slider {
+    writing-mode: bt-lr;
+    -webkit-appearance: slider-vertical;
+    width: 40px;
+    height: 120px;
+    padding: 0;
+}
+
+.volume-value {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Master Effects */
+.master-effects {
+    margin-bottom: 1.5rem;
+}
+
+.master-effects h4 {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.fx-slot {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: var(--dark-card);
+    border: 1px dashed var(--glass-border);
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.fx-slot:hover {
+    background: var(--dark-hover);
+    border-color: var(--primary-light);
+    color: var(--text-primary);
+}
+
+.fx-slot i {
+    font-size: 1rem;
+}
+
+.fx-slot span {
+    font-size: 0.85rem;
+}
+
+/* Project Info */
+.project-info {
+    margin-top: auto;
+}
+
+.project-info h4 {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.info-value {
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* ============================================
+   MODAL
+   ============================================ */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--dark-card);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: var(--shadow-lg);
+    animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.modal-header h2 {
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.modal-close {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+    background: var(--dark-hover);
+    color: var(--text-primary);
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.settings-group {
+    margin-bottom: 1.5rem;
+}
+
+.settings-group label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.settings-group input,
+.settings-group select {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--dark-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.settings-group input:focus,
+.settings-group select:focus {
+    outline: none;
+    border-color: var(--primary-light);
+}
+
+.time-signature {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.time-signature span {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1200px) {
+    .daw-sidebar {
+        width: 200px;
+    }
+    
+    .daw-master-panel {
+        width: 180px;
+    }
+    
+    .track-headers {
+        width: 150px;
+    }
+}
+
+@media (max-width: 968px) {
+    .transport-controls {
+        flex-wrap: wrap;
+    }
+    
+    .toolbar-btn span {
+        display: none;
+    }
+    
+    .daw-sidebar,
+    .daw-master-panel {
+        position: absolute;
+        z-index: 1000;
+        height: 100%;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .daw-sidebar.active {
+        transform: translateX(0);
+    }
+    
+    .daw-master-panel {
+        right: 0;
+        left: auto;
+        transform: translateX(100%);
+    }
+    
+    .daw-master-panel.active {
+        transform: translateX(0);
+    }
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+
+.tracks-container::-webkit-scrollbar,
+.daw-sidebar::-webkit-scrollbar,
+.daw-master-panel::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.tracks-container::-webkit-scrollbar-track,
+.daw-sidebar::-webkit-scrollbar-track,
+.daw-master-panel::-webkit-scrollbar-track {
+    background: var(--dark-bg);
+}
+
+.tracks-container::-webkit-scrollbar-thumb,
+.daw-sidebar::-webkit-scrollbar-thumb,
+.daw-master-panel::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+.tracks-container::-webkit-scrollbar-thumb:hover,
+.daw-sidebar::-webkit-scrollbar-thumb:hover,
+.daw-master-panel::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
