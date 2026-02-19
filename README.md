@@ -5,16 +5,22 @@ A completely online audio and music production solution with AI capabilities and
 ## Features
 
 ### 1. 🎚️ Full Online Digital Audio Workstation (DAW)
+
 - **Multi-track Audio Editor**: Create and manage multiple audio tracks
 - **Transport Controls**: Play, pause, stop, and record functionality
+- **Real-Time Recording**: Record your performance lively
 - **Timeline Visualization**: Visual timeline with playhead for precise editing
 - **Track Controls**: Individual track volume, mute, and solo controls
+- **Plugins**: Upload and import your favorite VSTs or browse built in ones from the selection library
 - **Master Controls**: Master volume and tempo (BPM) adjustment
 - **Waveform Visualization**: Visual representation of audio on each track
+- **Performance Monitor**: Monitor your device's vitals real-time (CPU, Memory, I/O)
+- **Project Settings**: Easily manage and tweak your project's name, author, performance options, connected audio devices, latency, buffer size and more
 - **Project Management**: Save and export your projects
 - **Transposing Audio**: Transpose your audio to any pitch and key you want
 
 ### 2. 🎼 AI Stem Splitting
+
 - **Audio Separation**: Upload any audio file and separate it into individual stems
 - **Four Stem Types**: 
   - Vocals
@@ -23,21 +29,6 @@ A completely online audio and music production solution with AI capabilities and
   - Other instruments
 - **Drag & Drop Upload**: Easy file upload interface
 - **Download Stems**: Download individual stems for further processing
-
-### 3. ✨ AI Sound FX and Music Generation
-
-#### Sound Effects Generator
-- **Based On SunoAI**
-- **Prompt-based Generation**: Describe the sound effect you want
-- **Duration Control**: Set the length of your sound effect (1-30 seconds)
-- **Custom Parameters**: Fine-tune your sound effects
-
-#### Music Generator
-- **Based On SunoAI**
-- **Genre Selection**: Choose from multiple genres (Electronic, Ambient, Rock, Jazz, Classical, Hip Hop, Pop)
-- **Mood Control**: Set the mood (Happy, Sad, Energetic, Calm, Dark, Uplifting)
-- **Tempo Adjustment**: Control the BPM (60-180)
-- **Duration Control**: Generate music from 10 seconds to 5 minutes
 
 ## Installation
 
