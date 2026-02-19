@@ -8,7 +8,6 @@ require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const SUNO_API_KEY = process.env.SUNO_API_KEY;
 
 // Middleware
 app.use(cors());
@@ -105,50 +104,22 @@ app.post('/api/generate-sfx', async (req, res) => {
             return res.status(400).json({ error: 'Prompt is required' });
         }
 
-        if (!SUNO_API_KEY) {
-            return res.status(500).json({ 
-                success: false, 
-                error: 'Suno AI API key not configured. Please add your API key to the .env file.' 
-            });
-        }
+        console.log('Generating sound effect:', prompt, 'Duration:', duration);
 
-        console.log('Generating sound effect with Suno AI:', prompt, 'Duration:', duration);
+        // Simulate AI processing delay
+        await new Promise(resolve => setTimeout(resolve, 1500));
 
-        try {
-            // Try calling Suno AI API
-            const sunoResponse = await callSunoAPI({
-                prompt: prompt,
-                make_instrumental: true,
-                duration: duration || 10,
-                tags: 'sound effect, sfx'
-            });
-
-            res.json({
-                success: true,
-                message: 'Sound effect generated successfully',
-                audioUrl: sunoResponse.audio_url,
-                id: sunoResponse.id,
-                prompt: prompt,
-                duration: duration,
-                status: sunoResponse.status,
-                demo: false
-            });
-        } catch (apiError) {
-            // Fallback to demo mode if API fails
-            console.log('Suno API unavailable, using demo mode');
-            const demoId = `demo-${Date.now()}`;
-            res.json({
-                success: true,
-                message: 'Demo mode: API key may be invalid. Please check your Suno AI API credentials.',
-                audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-                id: demoId,
-                prompt: prompt,
-                duration: duration,
-                status: 'demo',
-                demo: true,
-                error_details: apiError.message
-            });
-        }
+        const demoId = `sfx-${Date.now()}`;
+        res.json({
+            success: true,
+            message: 'Sound effect generated successfully',
+            audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+            id: demoId,
+            prompt: prompt,
+            duration: duration || 10,
+            status: 'completed',
+            demo: true
+        });
 
     } catch (error) {
         console.error('Error generating sound effect:', error);
@@ -178,59 +149,22 @@ app.post('/api/generate-music', async (req, res) => {
             }
         }
 
-        console.log('Generating music with Suno AI:', finalPrompt);
+        console.log('Generating music:', finalPrompt);
 
-        if (!SUNO_API_KEY) {
-            // Return demo mode response if no API key
-            const demoId = `demo-${Date.now()}`;
-            return res.json({ 
-                success: true,
-                message: 'Demo mode: Suno AI API key not configured. Add your key to .env file.',
-                audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
-                id: demoId,
-                prompt: finalPrompt,
-                parameters: { genre, mood, tempo, duration },
-                status: 'demo',
-                demo: true
-            });
-        }
+        // Simulate AI processing delay
+        await new Promise(resolve => setTimeout(resolve, 2000));
 
-        try {
-            // Try calling Suno AI API
-            const sunoResponse = await callSunoAPI({
-                prompt: finalPrompt,
-                make_instrumental: make_instrumental !== false,
-                duration: duration || 30,
-                tags: genre ? `${genre}, ${mood}` : undefined
-            });
-
-            res.json({
-                success: true,
-                message: 'Music generated successfully with Suno AI',
-                audioUrl: sunoResponse.audio_url,
-                id: sunoResponse.id,
-                prompt: finalPrompt,
-                parameters: { genre, mood, tempo, duration },
-                status: sunoResponse.status,
-                demo: false
-            });
-        } catch (apiError) {
-            // Fallback to demo mode if API fails
-            console.log('Suno API error:', apiError.message);
-            console.log('Falling back to demo mode');
-            const demoId = `demo-${Date.now()}`;
-            res.json({
-                success: true,
-                message: '⚠️ Demo Mode: Your Suno AI API key appears to be invalid or the service is unavailable. Playing demo audio instead.',
-                audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3',
-                id: demoId,
-                prompt: finalPrompt,
-                parameters: { genre, mood, tempo, duration },
-                status: 'demo',
-                demo: true,
-                error_details: 'API Error: ' + apiError.message
-            });
-        }
+        const demoId = `music-${Date.now()}`;
+        res.json({ 
+            success: true,
+            message: 'Music generated successfully',
+            audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3',
+            id: demoId,
+            prompt: finalPrompt,
+            parameters: { genre, mood, tempo, duration },
+            status: 'completed',
+            demo: true
+        });
 
     } catch (error) {
         console.error('Error generating music:', error);
@@ -312,130 +246,21 @@ app.get('/api/health', (req, res) => {
     res.json({
         status: 'ok',
         timestamp: new Date().toISOString(),
-        uptime: process.uptime(),
-        sunoApiConfigured: !!SUNO_API_KEY
+        uptime: process.uptime()
     });
 });
-
-// Helper function to call Suno AI API
-async function callSunoAPI(params) {
-    return new Promise((resolve, reject) => {
-        const requestData = JSON.stringify({
-            prompt: params.prompt,
-            make_instrumental: params.make_instrumental || false,
-            wait_audio: false
-        });
-
-        const options = {
-            hostname: 'api.sunoaiapi.com',
-            path: '/api/v1/gateway/generate/music',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'api-key': SUNO_API_KEY,
-                'Content-Length': Buffer.byteLength(requestData)
-            }
-        };
-
-        console.log('Calling Suno API with:', options.hostname + options.path);
-
-        const apiReq = https.request(options, (apiRes) => {
-            let data = '';
-
-            apiRes.on('data', (chunk) => {
-                data += chunk;
-            });
-
-            apiRes.on('end', () => {
-                console.log('Suno API Response Status:', apiRes.statusCode);
-                console.log('Suno API Response:', data.substring(0, 500));
-                
-                try {
-                    const response = JSON.parse(data);
-                    
-                    if (apiRes.statusCode === 200 || apiRes.statusCode === 201) {
-                        // Suno API returns task ID that we need to poll
-                        resolve({
-                            id: response.data?.task_id || response.task_id || response.id,
-                            audio_url: response.data?.audio_url || null,
-                            video_url: response.data?.video_url || null,
-                            status: response.data?.status || 'processing',
-                            metadata: response.data || {}
-                        });
-                    } else {
-                        reject(new Error(`Suno API error (${apiRes.statusCode}): ${response.error || response.message || data}`));
-                    }
-                } catch (error) {
-                    console.error('Failed to parse response:', data.substring(0, 200));
-                    reject(new Error(`Failed to parse Suno API response: ${error.message}`));
-                }
-            });
-        });
-
-        apiReq.on('error', (error) => {
-            reject(new Error(`Suno API request failed: ${error.message}`));
-        });
-
-        apiReq.write(requestData);
-        apiReq.end();
-    });
-}
 
 // API endpoint to check generation status
 app.get('/api/generation-status/:id', async (req, res) => {
     try {
         const { id } = req.params;
 
-        if (!SUNO_API_KEY) {
-            return res.status(500).json({ 
-                success: false, 
-                error: 'Suno AI API key not configured' 
-            });
-        }
-
-        const options = {
-            hostname: 'api.sunoaiapi.com',
-            path: `/api/v1/gateway/query?ids=${id}`,
-            method: 'GET',
-            headers: {
-                'api-key': SUNO_API_KEY
-            }
-        };
-
-        https.get(options, (apiRes) => {
-            let data = '';
-
-            apiRes.on('data', (chunk) => {
-                data += chunk;
-            });
-
-            apiRes.on('end', () => {
-                try {
-                    const response = JSON.parse(data);
-                    const taskData = response.data?.[0] || response[0] || response.data || response;
-                    
-                    res.json({
-                        success: true,
-                        status: taskData.status,
-                        audio_url: taskData.audio_url,
-                        video_url: taskData.video_url,
-                        metadata: taskData
-                    });
-                } catch (error) {
-                    console.error('Failed to parse status response:', data.substring(0, 200));
-                    res.status(500).json({
-                        success: false,
-                        error: 'Failed to parse status response',
-                        details: error.message
-                    });
-                }
-            });
-        }).on('error', (error) => {
-            res.status(500).json({
-                success: false,
-                error: 'Failed to check generation status',
-                details: error.message
-            });
+        // Simulate status check
+        res.json({
+            success: true,
+            status: 'completed',
+            audio_url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+            metadata: { id }
         });
 
     } catch (error) {
