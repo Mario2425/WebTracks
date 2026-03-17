@@ -10,13 +10,14 @@
     <div class="daw-container">
         <!-- Top Menu Bar -->
         <div class="menu-bar">
+            <div class="menu-logo">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#ff6b35">
+                    <path d="M12 3l1.09 3.26L16 7l-2.91.74L12 11l-1.09-3.26L8 7l2.91-.74L12 3zm-7 8l.73 2.18L8 14l-2.27.82L5 17l-.73-2.18L2 14l2.27-.82L5 11zm14 0l.73 2.18L22 14l-2.27.82L19 17l-.73-2.18L16 14l2.27-.82L19 11z"/>
+                </svg>
+                <span class="logo-text">ForgeAI</span>
+            </div>
             <div class="menu-items">
-                <a href="index.html" class="menu-item" style="text-decoration: none; color: inherit;">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 4px;">
-                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
-                    </svg>
-                    HOME
-                </a>
+                <a href="index.html" class="menu-item" style="text-decoration: none; color: inherit;">HOME</a>
                 <span class="menu-item">FILE</span>
                 <span class="menu-item">EDIT</span>
                 <span class="menu-item">ADD</span>
@@ -26,48 +27,135 @@
                 <span class="menu-item">TOOLS</span>
                 <span class="menu-item">HELP</span>
             </div>
+            <div class="menu-right">
+                <span class="project-name" id="projectName">Untitled Project</span>
+            </div>
         </div>
 
         <!-- Transport Controls Bar -->
         <div class="transport-bar">
+            <!-- Left: File actions -->
             <div class="transport-left">
-                <button class="transport-btn" id="saveBtn" title="Save">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/>
-                    </svg>
+                <button class="transport-btn icon-btn" id="saveBtn" title="Save (Ctrl+S)">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>
                 </button>
-                <button class="transport-btn" id="openBtn" title="Open">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-1 12H5V8h14v10z"/>
-                    </svg>
+                <button class="transport-btn icon-btn" id="openBtn" title="Open">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-8l-2-2H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-1 12H5V8h14v10z"/></svg>
                 </button>
-            </div>
-
-            <div class="transport-center">
-                <button class="transport-btn" id="stopBtn" title="Stop">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <rect x="6" y="6" width="12" height="12"/>
-                    </svg>
-                </button>
-                <button class="transport-btn primary" id="playBtn" title="Play">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M8 5v14l11-7z"/>
-                    </svg>
-                </button>
-                <button class="transport-btn record" id="recordBtn" title="Record">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <circle cx="12" cy="12" r="8"/>
-                    </svg>
-                </button>
-                
-                <div class="tempo-control">
-                    <input type="number" id="tempoInput" value="140" min="40" max="300">
-                    <span class="tempo-label">BPM</span>
+                <div class="transport-divider"></div>
+                <!-- Pattern/Song mode toggle -->
+                <div class="mode-toggle">
+                    <button class="mode-btn active" id="patternModeBtn">PAT</button>
+                    <button class="mode-btn" id="songModeBtn">SONG</button>
                 </div>
             </div>
 
+            <!-- Center: Transport controls -->
+            <div class="transport-center">
+                <!-- Rewind to start -->
+                <button class="transport-btn" id="rewindBtn" title="Rewind to Start">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
+                </button>
+                <!-- Stop -->
+                <button class="transport-btn" id="stopBtn" title="Stop">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="1"/></svg>
+                </button>
+                <!-- Play -->
+                <button class="transport-btn play-btn" id="playBtn" title="Play (Space)">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" id="playIcon"><path d="M8 5v14l11-7z"/></svg>
+                </button>
+                <!-- Record -->
+                <button class="transport-btn record-btn" id="recordBtn" title="Record">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="7"/></svg>
+                </button>
+                <div class="transport-divider"></div>
+                <!-- Loop toggle -->
+                <button class="transport-btn loop-btn" id="loopBtn" title="Toggle Loop">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/></svg>
+                </button>
+            </div>
+
+            <!-- Right: BPM, Key, Time Signature, Time Display -->
             <div class="transport-right">
-                <div class="time-display" id="timeDisplay">0:00:00</div>
+                <!-- BPM Control -->
+                <div class="lcd-block" title="BPM - Click to edit">
+                    <div class="lcd-label">BPM</div>
+                    <div class="lcd-value bpm-display" id="bpmDisplay">140</div>
+                    <div class="bpm-arrows">
+                        <button class="arrow-btn" id="bpmUp">▲</button>
+                        <button class="arrow-btn" id="bpmDown">▼</button>
+                    </div>
+                    <input type="number" id="tempoInput" value="140" min="40" max="300" class="hidden-input">
+                </div>
+
+                <div class="transport-divider"></div>
+
+                <!-- Time Signature -->
+                <div class="lcd-block" title="Time Signature">
+                    <div class="lcd-label">TIME SIG</div>
+                    <div class="lcd-value" id="timeSigDisplay">4 / 4</div>
+                </div>
+
+                <div class="transport-divider"></div>
+
+                <!-- Key / Scale -->
+                <div class="lcd-block key-block" id="keyBlock" title="Project Key & Scale">
+                    <div class="lcd-label">KEY</div>
+                    <div class="lcd-value key-value" id="keyDisplay">C Maj</div>
+                    <div class="key-dropdown" id="keyDropdown">
+                        <div class="key-dropdown-section">
+                            <div class="key-dropdown-label">ROOT NOTE</div>
+                            <div class="key-notes" id="keyNotes">
+                                <button class="key-note-btn active" data-note="C">C</button>
+                                <button class="key-note-btn" data-note="C#">C#</button>
+                                <button class="key-note-btn" data-note="D">D</button>
+                                <button class="key-note-btn" data-note="D#">D#</button>
+                                <button class="key-note-btn" data-note="E">E</button>
+                                <button class="key-note-btn" data-note="F">F</button>
+                                <button class="key-note-btn" data-note="F#">F#</button>
+                                <button class="key-note-btn" data-note="G">G</button>
+                                <button class="key-note-btn" data-note="G#">G#</button>
+                                <button class="key-note-btn" data-note="A">A</button>
+                                <button class="key-note-btn" data-note="A#">A#</button>
+                                <button class="key-note-btn" data-note="B">B</button>
+                            </div>
+                        </div>
+                        <div class="key-dropdown-section">
+                            <div class="key-dropdown-label">SCALE</div>
+                            <div class="key-scales" id="keyScales">
+                                <button class="key-scale-btn active" data-scale="Major">Major</button>
+                                <button class="key-scale-btn" data-scale="Minor">Minor</button>
+                                <button class="key-scale-btn" data-scale="Dorian">Dorian</button>
+                                <button class="key-scale-btn" data-scale="Mixolydian">Mixolydian</button>
+                                <button class="key-scale-btn" data-scale="Phrygian">Phrygian</button>
+                                <button class="key-scale-btn" data-scale="Lydian">Lydian</button>
+                                <button class="key-scale-btn" data-scale="Locrian">Locrian</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="transport-divider"></div>
+
+                <!-- Time Display -->
+                <div class="lcd-block">
+                    <div class="lcd-label">POSITION</div>
+                    <div class="time-display" id="timeDisplay">1:1:000</div>
+                </div>
+
+                <div class="transport-divider"></div>
+
+                <!-- CPU / BUF meters -->
+                <div class="perf-meters">
+                    <div class="perf-row">
+                        <span class="perf-label">CPU</span>
+                        <div class="perf-bar"><div class="perf-fill cpu-fill" id="cpuFill" style="width:12%"></div></div>
+                    </div>
+                    <div class="perf-row">
+                        <span class="perf-label">BUF</span>
+                        <div class="perf-bar"><div class="perf-fill buf-fill" id="bufFill" style="width:5%"></div></div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -76,91 +164,106 @@
             <!-- Left Panel - Tools -->
             <div class="left-panel">
                 <div class="tool-section">
-                    <button class="tool-btn active" title="Select">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M7 2l10 10-4 4-4-4-2 8-2-2 8-2-4-4z"/>
-                        </svg>
+                    <div class="tool-group-label">DRAW</div>
+                    <button class="tool-btn active" id="toolSelect" title="Select (Esc)" data-tool="select">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4 0l16 12-6.5 1.5L17 22l-2.5 1L11 14.5 4 20V0z"/></svg>
                     </button>
-                    <button class="tool-btn" title="Pencil">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
-                        </svg>
+                    <button class="tool-btn" id="toolPencil" title="Draw (P)" data-tool="pencil">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
                     </button>
-                    <button class="tool-btn" title="Eraser">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M16.24 3.56l4.95 4.94c.78.79.78 2.05 0 2.84L12 20.53a4.008 4.008 0 0 1-5.66 0L2.81 17c-.78-.79-.78-2.05 0-2.84l10.6-10.6c.79-.78 2.05-.78 2.83 0M4.22 15.58l3.54 3.53c.78.79 2.04.79 2.83 0l3.53-3.53-4.95-4.95-4.95 4.95z"/>
-                        </svg>
+                    <button class="tool-btn" id="toolEraser" title="Erase (E)" data-tool="eraser">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16.24 3.56l4.95 4.94c.78.79.78 2.05 0 2.84L12 20.53a4.008 4.008 0 0 1-5.66 0L2.81 17c-.78-.79-.78-2.05 0-2.84l10.6-10.6c.79-.78 2.05-.78 2.83 0M4.22 15.58l3.54 3.53c.78.79 2.04.79 2.83 0l3.53-3.53-4.95-4.95-4.95 4.95z"/></svg>
                     </button>
-                    <button class="tool-btn" title="Mute">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
-                        </svg>
+                    <div class="tool-group-label" style="margin-top:8px">MISC</div>
+                    <button class="tool-btn" id="toolMute" title="Mute" data-tool="mute">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
                     </button>
-                    <button class="tool-btn" title="Cut">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <button class="tool-btn" id="toolCut" title="Slice (C)" data-tool="cut">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M9.64 7.64c.23-.5.36-1.05.36-1.64 0-2.21-1.79-4-4-4S2 3.79 2 6s1.79 4 4 4c.59 0 1.14-.13 1.64-.36L10 12l-2.36 2.36C7.14 14.13 6.59 14 6 14c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4c0-.59-.13-1.14-.36-1.64L12 14l7 7h3v-1L9.64 7.64zM6 8c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2zm0 12c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2zm6-7.5c-.28 0-.5-.22-.5-.5s.22-.5.5-.5.5.22.5.5-.22.5-.5.5zM19 3l-6 6 2 2 7-7V3z"/>
                         </svg>
                     </button>
                 </div>
             </div>
 
-            <!-- Center Panel - Pattern Editor -->
+            <!-- Center Panel - Playlist / Arrangement -->
             <div class="center-panel">
+                <!-- Pattern header / tab bar -->
                 <div class="pattern-header">
-                    <div class="pattern-info">
-                        <span class="pattern-label">Playlist - Arrangement › Pattern 1</span>
+                    <div class="pattern-tabs">
+                        <button class="pattern-tab active" id="tabPlaylist">PLAYLIST</button>
+                        <button class="pattern-tab" id="tabPianoRoll">PIANO ROLL</button>
+                        <button class="pattern-tab" id="tabMixer">MIXER</button>
+                    </div>
+                    <div class="pattern-actions">
+                        <button class="add-track-btn" id="addTrackBtn" title="Add Track">+ ADD TRACK</button>
                     </div>
                 </div>
 
                 <div class="pattern-editor">
-                    <!-- Track List -->
-                    <div class="track-list">
-                        <div class="track-header">
-                            <button class="add-track-btn" id="addTrackBtn">+</button>
+                    <!-- Track List (FL Studio channel strip) -->
+                    <div class="track-list" id="trackListPanel">
+                        <div class="track-list-header">
+                            <span>TRACKS</span>
                         </div>
                         <div id="trackListContainer">
-                            <!-- Tracks will be dynamically added here -->
+                            <!-- Tracks injected by JS -->
                         </div>
                     </div>
 
-                    <!-- Grid Area -->
-                    <div class="grid-container">
-                        <div class="grid-header" id="gridHeader">
-                            <!-- Measure numbers will be added here -->
+                    <!-- Grid / Arrangement Area -->
+                    <div class="grid-wrapper">
+                        <!-- Ruler / measure numbers -->
+                        <div class="ruler" id="ruler">
+                            <div class="ruler-inner" id="rulerInner">
+                                <!-- Measure markers injected by JS -->
+                            </div>
+                            <!-- Playhead marker on ruler -->
+                            <div class="playhead-ruler" id="playheadRuler"></div>
                         </div>
-                        <div class="grid-content" id="gridContent">
-                            <!-- Grid cells will be added here -->
+                        <!-- Scrollable grid -->
+                        <div class="grid-scroll" id="gridScroll">
+                            <div class="grid-content" id="gridContent">
+                                <!-- Grid rows injected by JS -->
+                            </div>
+                            <!-- Animated playhead line -->
+                            <div class="playhead" id="playhead"></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Panel - Properties -->
+            <!-- Right Panel - Mixer / Channel Rack -->
             <div class="right-panel">
-                <div class="panel-section">
-                    <h3>Track Properties</h3>
-                    <div class="property-group">
-                        <label>Volume</label>
-                        <input type="range" min="0" max="100" value="80" class="slider" id="volumeSlider">
-                        <span id="volumeValue">80%</span>
-                    </div>
-                    <div class="property-group">
-                        <label>Pan</label>
-                        <input type="range" min="-100" max="100" value="0" class="slider" id="panSlider">
-                        <span id="panValue">Center</span>
-                    </div>
-                    <div class="property-group">
-                        <label>Track Name</label>
-                        <input type="text" id="trackNameInput" placeholder="Track 1" class="text-input">
-                    </div>
+                <div class="mixer-header">
+                    <span class="mixer-title">MIXER</span>
+                    <button class="mixer-master-btn" title="Master">MST</button>
                 </div>
-
-                <div class="panel-section">
-                    <h3>AI Generation</h3>
+                <div class="mixer-channels" id="mixerChannels">
+                    <!-- Master channel -->
+                    <div class="mixer-channel master-channel">
+                        <div class="channel-name">MASTER</div>
+                        <div class="channel-fader-wrap">
+                            <div class="vu-meter" id="masterVu">
+                                <div class="vu-bar" id="masterVuBar" style="height:0%"></div>
+                            </div>
+                            <input type="range" orient="vertical" min="0" max="125" value="100" class="fader" id="masterFader">
+                        </div>
+                        <div class="channel-vol-label" id="masterVolLabel">100%</div>
+                        <div class="channel-knobs">
+                            <div class="knob-wrap" title="EQ">
+                                <div class="knob" id="masterEqKnob" data-value="64"></div>
+                                <div class="knob-label">EQ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Track channels injected by JS -->
+                    <div id="mixerTrackChannels"></div>
+                </div>
+                <!-- AI Generate -->
+                <div class="mixer-ai">
                     <button class="ai-btn" id="aiGenerateBtn">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                        </svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                         Generate with AI
                     </button>
                 </div>
